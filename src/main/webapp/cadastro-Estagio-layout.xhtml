@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo">Cadastro de Estágio</ui:define>
+    <ui:define name="corpo">
+        <h2>Cadastro de Estágio</h2>
+        <h:form id="frm">
+            <p:messages showDetail="false" showSummary="true" />
+            <p:panelGrid columns="2">
+                <h:outputLabel value="Aluno: " />
+                <p:selectOneMenu value="#{cadastroEstagioBean.alunoSelecionado}" converter="alunoConverter">>
+                    <f:selectItems value="#{consultaAlunosBean.alunos}" var="aluno"
+                        itemLabel="#{aluno.name}" itemValue="#{aluno}" />
+                </p:selectOneMenu>
+
+                <h:outputLabel value="Empresa: " />
+                <p:selectOneMenu value="#{cadastroEstagioBean.empresaSelecionada}" converter="empresaConverter">
+                    <f:selectItems value="#{consultaEmpresasBean.empresas}" var="empresa"
+                        itemLabel="#{empresa.name}" itemValue="#{empresa}" />
+                </p:selectOneMenu>
+
+                <h:outputLabel value="Orientador: " />
+                <p:selectOneMenu value="#{cadastroEstagioBean.orientadorSelecionado}" converter="orientadorConverter" >
+                    <f:selectItems value="#{consultaOrientadoresBean.orientadores}" var="orientador"
+                        itemLabel="#{orientador.name}" itemValue="#{orientador}" />
+                </p:selectOneMenu>
+
+                <h:outputLabel value="Nome do Estágio: " />
+                <p:inputText value="#{cadastroEstagioBean.estagio.nome}" />
+
+                <h:outputLabel value="Carga Horária: " />
+                <p:inputText value="#{cadastroEstagioBean.estagio.cargaHoraria}" />
+
+                <h:outputLabel value="Início: " />
+                <p:calendar value="#{cadastroEstagioBean.estagio.inicio}" />
+
+                <h:outputLabel value="Fim: " />
+                <p:calendar value="#{cadastroEstagioBean.estagio.fim}" />
+
+                <h:outputLabel value="Status: " />
+                <p:selectOneMenu value="#{cadastroEstagioBean.estagio.status}" converter="statusConverter">
+                    <f:selectItem itemLabel="EM_ANDAMENTO" itemValue="EM_ANDAMENTO" />
+                    <f:selectItem itemLabel="FINALIZADO" itemValue="FINALIZADO" />
+                    <f:selectItem itemLabel="CANCELADO" itemValue="CANCELADO" />
+                </p:selectOneMenu>
+
+                <h:commandButton value="Salvar" action="#{cadastroEstagioBean.salvarEstagio}" />
+            </p:panelGrid>
+        </h:form>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+
+	<ui:define name="titulo">Cadastro do Aluno</ui:define>
+	<ui:define name="corpo">
+		<h2>Cadastro do Aluno</h2>
+		<h:form id="frm">
+			<p:messages showDetail="false" showSummary="true" />
+			 <p:panelGrid columns="2">
+                <h:outputLabel value="Nome: " />
+                <p:inputText size="60" value="#{cadastroAlunoBean.aluno.name}" label="Nome" />
+                
+                <h:outputLabel value="Username: " />
+                <p:inputText size="60" value="#{cadastroAlunoBean.aluno.username}" label="Username" />
+                
+                <h:outputLabel value="Senha: " />
+                <p:inputText size="60" value="#{cadastroAlunoBean.aluno.senha}" label="Senha" />
+				
+				<h:outputLabel value="Orientador: " />
+				<p:selectOneMenu value="#{cadastroAlunoBean.orientadorSelecionado}"
+				converter="orientadorConverter">
+				    <f:selectItems value="#{consultaOrientadoresBean.orientadores}" var="orientador"
+				                   itemLabel="#{orientador.name}" itemValue="#{orientador}" />
+				</p:selectOneMenu>
+				<h:outputLabel value="Empresa: " />
+				<p:selectOneMenu value="#{cadastroAlunoBean.empresaSelecionada}"
+				converter="empresaConverter">
+				    <f:selectItems value="#{consultaEmpresasBean.empresas}" var="empresa"
+				                   itemLabel="#{empresa.name}" itemValue="#{empresa}" />
+				</p:selectOneMenu>
+				<h:commandButton value="Salvar" action="#{cadastroAlunoBean.salvar}" />
+
+				<!-- <h:commandLink value="Ir para lista de Orientadores"
+					action="/listalivros-layout?faces-redirect=true" />-->
+
+			</p:panelGrid>
+		</h:form>
+	</ui:define>
+
+</ui:composition>

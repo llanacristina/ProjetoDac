@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Projeto DAC</title>
+	</h:head>
+	<ui:define name="titulo">Avaliação do Professor</ui:define>
+	<ui:define name="corpo">
+		<h2>Avaliação do Professor</h2>
+		<h:form id="frm">
+			<h:form id="frm">
+				<h:messages showDetail="false" showSummary="true" />
+				  <h:panelGrid columns="2">
+				  
+		  <h:outputLabel value="Aluno: " />
+              <p:selectOneMenu value="#{cadastroAvaliacaoProfessorBean.alunoSelecionado}" converter="alunoConverter">>
+                  <f:selectItems value="#{consultaAlunosBean.alunos}" var="aluno"
+                      itemLabel="#{aluno.name}" itemValue="#{aluno}" />
+            </p:selectOneMenu>
+            
+            <h:outputLabel value="Orientador: " />
+                <p:selectOneMenu value="#{cadastroAvaliacaoProfessorBean.orientadorSelecionado}" converter="orientadorConverter" >
+                    <f:selectItems value="#{consultaOrientadoresBean.orientadores}" var="orientador"
+                        itemLabel="#{orientador.name}" itemValue="#{orientador}" />
+                </p:selectOneMenu>
+            
+        <h:outputLabel value="cumprimento do horário de trabalho determinado pela empresa" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoProfessorBean.avaliacaoDoProfessor.assiduidade}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+
+        <h:outputLabel value="observância das normas e regulamentos internos da empresa" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoProfessorBean.avaliacaoDoProfessor.disciplina}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+        
+         <h:outputLabel value="predisposição para se interagir, cooperar e se relacionar com os chefes, supervisores e colegas, no âmbito de trabalho" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoProfessorBean.avaliacaoDoProfessor.sociabilidade}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+        
+         <h:outputLabel value="eficiência e eficácia na execução das tarefas que lhe são atribuídas, e zelo pelo equipamento e bens da empresa" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoProfessorBean.avaliacaoDoProfessor.responsabilidade}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+        
+        <h:outputLabel value="prever e ser proativo em atividades solicitadas" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoProfessorBean.avaliacaoDoProfessor.iniciativa}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+
+        <h:outputLabel />
+        <h:commandButton value="Salvar" action="#{cadastroAvaliacaoProfessorBean.salvar}" />
+    </h:panelGrid>
+			</h:form>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

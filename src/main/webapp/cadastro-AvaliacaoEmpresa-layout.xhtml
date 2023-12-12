@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+	<h:head>
+		<title>Projeto DAC</title>
+	</h:head>
+	<ui:define name="titulo">Avaliação da Empresa</ui:define>
+	<ui:define name="corpo">
+		<h2>Avaliação da Empresa</h2>
+		<h:form id="frm">
+			<h:form id="frm">
+				<h:messages showDetail="false" showSummary="true" />
+				  <h:panelGrid columns="2">
+				  
+		  <h:outputLabel value="Aluno: " />
+              <p:selectOneMenu value="#{cadastroAvaliacaoDaEmpresaBean.alunoSelecionado}" converter="alunoConverter">>
+                  <f:selectItems value="#{consultaAlunosBean.alunos}" var="aluno"
+                      itemLabel="#{aluno.name}" itemValue="#{aluno}" />
+            </p:selectOneMenu>
+            
+            <h:outputLabel value="Empresa " />
+                <p:selectOneMenu value="#{cadastroAvaliacaoDaEmpresaBean.empresaSelecionado}" converter="empresaConverter" >
+                    <f:selectItems value="#{consultaEmpresasBean.empresas}" var="empresa"
+                        itemLabel="#{empresa.name}" itemValue="#{empresa}" />
+                </p:selectOneMenu>
+            
+        <h:outputLabel value="qualidade de trabalho tendo em vista o padrão exigido para o estagiário" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoDaEmpresaBean.avaliacaoDaEmpresa.rendimento}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+
+        <h:outputLabel value="domínio demonstrado no desempenho de atividades atribuídas pela empresa" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoDaEmpresaBean.avaliacaoDaEmpresa.conhecimentos}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+        
+         <h:outputLabel value="segurança, precisão e diligência com as quais executa as tarefas" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoDaEmpresaBean.avaliacaoDaEmpresa.cumprimento}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+        
+         <h:outputLabel value="capacidade para assimilar novos conhecimentos, necessários no desempenho de suas tarefas" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoDaEmpresaBean.avaliacaoDaEmpresa.aprendizagem}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+        
+        <h:outputLabel value="iniciativa para encontrar soluções necessárias ao desenvolvimento de suas atividades" />
+        <p:selectOneMenu value="#{cadastroAvaliacaoDaEmpresaBean.avaliacaoDaEmpresa.desempenho}">
+                    <f:selectItem itemLabel="Insuficiente" itemValue="Insuficiente" />
+                    <f:selectItem itemLabel="Regular" itemValue="Regular" />
+                    <f:selectItem itemLabel="Bom" itemValue="Bom" />
+                    <f:selectItem itemLabel="Muito bom" itemValue="Muito bom" />
+                </p:selectOneMenu>
+
+        <h:outputLabel />
+        <h:commandButton value="Salvar" action="#{cadastroAvaliacaoDaEmpresaBean.salvar}" />
+    </h:panelGrid>
+			</h:form>
+		</h:form>
+	</ui:define>
+</ui:composition>
+

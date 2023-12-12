@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Estágios</ui:define>
+	<ui:define name="corpo">
+		<h2>Estágios</h2>
+		<h:form>
+			<p:dataTable value="#{consultaEstagiosBean.estagios}" var="estagio"
+				border="1" cellspacing="0" cellpadding="2">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="ID" />
+					</f:facet>
+					<h:outputText value="#{estagio.id}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Carga Horária" />
+					</f:facet>
+					<h:outputText value="#{estagio.cargaHoraria}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Início" />
+					</f:facet>
+					<h:outputText value="#{estagio.inicio}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Fim" />
+					</f:facet>
+					<h:outputText value="#{estagio.fim}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Status" />
+					</f:facet>
+					<h:outputText value="#{estagio.status}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Aluno" />
+					</f:facet>
+					<h:outputText value="#{estagio.aluno}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Empresa" />
+					</f:facet>
+					<h:outputText value="#{estagio.empresa}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Orientador" />
+					</f:facet>
+					<h:outputText value="#{estagio.orientador}" />
+				</p:column>
+				
+				<p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações" />
+                    </f:facet>
+                    <!--<p:commandButton value="Remover" action="#{consultaEstagiosBean.remover(estagio)}" />-->
+                    <p:commandButton value="Editar"  actionListener="#{consultaEstagiosBean.iniciarEdicao(estagio)}"
+                     oncomplete="PF('editDialog').show()" />
+                </p:column>
+			</p:dataTable>
+		</h:form>
+		
+		<!-- Modal de Edição -->
+		<p:dialog header="Editar Estágio" widgetVar="editDialog" resizable="false" modal="true">
+		    <h:form id="editForm">
+		        <h:panelGrid columns="2" cellpadding="5">
+		            <h:outputText value="ID:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.id}" />
+
+		            <h:outputText value="Carga Horária:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.cargaHoraria}" />
+
+		            <h:outputText value="Início:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.inicio}" />
+
+		            <h:outputText value="Fim:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.fim}" />
+
+		            <h:outputText value="Status:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.status}" />
+
+		            <h:outputText value="Aluno:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.aluno}" />
+
+		            <h:outputText value="Empresa:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.empresa}" />
+
+		            <h:outputText value="Orientador:" />
+		            <p:inputText value="#{consultaEstagiosBean.estagioSelecionado.orientador}" />
+		        </h:panelGrid>
+
+		        <p:commandButton value="Salvar" action="#{consultaEstagiosBean.salvarEdicao()}" oncomplete="PF('editDialog').hide()" />
+		    </h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

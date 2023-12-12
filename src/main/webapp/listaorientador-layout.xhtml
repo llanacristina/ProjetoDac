@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://xmlns.jcp.org/jsf/core"
+    xmlns:h="http://xmlns.jcp.org/jsf/html"
+    xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui">
+
+    <ui:define name="titulo">Lista de Orientadores</ui:define>
+    <ui:define name="corpo">
+        <h2>Orientadores</h2>
+        
+        <h:form id="formListagem">
+
+            <p:dataTable id="tabela" value="#{consultaOrientadoresBean.orientadores}" var="orientador"
+                style="width: 70%">
+                <p:column headerText="Nome">
+                    <h:outputText value="#{orientador.name}" />
+                </p:column>
+                <p:column headerText="Cargo Acadêmico">
+                    <h:outputText value="#{orientador.cargo}" />
+                </p:column>
+                <p:column headerText="Área de Especialização">
+                    <h:outputText value="#{orientador.areaEspecializacao}" />
+                </p:column>
+
+                <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações" />
+                    </f:facet>
+                  
+                    <p:commandButton value="Editar" action="#{consultaOrientadoresBean.iniciarEdicao(orientador)}" oncomplete="PF('editDialog').show()" />
+                </p:column>
+            </p:dataTable>
+
+        </h:form>
+
+        <!-- Modal de Edição -->
+        <p:dialog header="Editar Orientador" widgetVar="editDialog" resizable="false" modal="true">
+            <h:form id="editForm">
+                <h:panelGrid columns="2" cellpadding="5">
+                    <h:outputText value="Nome:" />
+                    <p:inputText value="#{consultaOrientadoresBean.orientadorSelecionado.name}" />
+
+                    <h:outputText value="Cargo Acadêmico:" />
+                    <p:inputText value="#{consultaOrientadoresBean.orientadorSelecionado.cargo}" />
+
+                    <h:outputText value="Área de Especialização:" />
+                    <p:inputText value="#{consultaOrientadoresBean.orientadorSelecionado.areaEspecializacao}" />
+                </h:panelGrid>
+
+                <p:commandButton value="Salvar" action="#{consultaOrientadoresBean.salvarEdicao()}" oncomplete="PF('editDialog').hide()" />
+            </h:form>
+        </p:dialog>
+
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title><ui:insert name="titulo">Livros</ui:insert></title>
+	<h:outputStylesheet library="arquivos" name="styles.css" />
+</h:head>
+<h:body>
+	<header>
+		Projeto DAC - Sistema Estágio
+		<div style="float: right; margin-right: 20px; margin-top: 8px">
+			#{alunoBean.nomeUsuario} <br /> #{alunoBean.dataLogin}
+		</div>
+	</header>
+	<h:form>
+		<p:menubar style="margin-top: -20px; margin-bottom: 20px">
+			<p:submenu rendered="#{alunoBean.getIsEmpresa()}" label="Cadastros">
+				<p:menuitem value="Orientador"
+					action="/cadastro-orientador-layout?faces-redirect=true" />
+				<p:menuitem value="Empresa"
+					action="/cadastro-empresa-layout?faces-redirect=true" />
+				<p:menuitem value="Aluno"
+					action="/cadastro-Aluno-layout?faces-redirect=true" />
+				<p:menuitem value="Estágio"
+					action="/cadastro-Estagio-layout?faces-redirect=true" />
+			</p:submenu>
+			<p:submenu label="Listas">
+				<p:menuitem value="Orientador"
+					action="/listaorientador-layout?faces-redirect=true" />
+				<p:menuitem value="Empresa"
+					action="/listaempresas-layout?faces-redirect=true" />
+				<p:menuitem value="Aluno"
+					action="/listaAlunos?faces-redirect=true" />
+				<p:menuitem value="Estágio"
+					action="/listaEstagio?faces-redirect=true" />
+			</p:submenu>
+			<p:menuitem value="Consulta Alunos"
+        			action="/consultaAlunos?faces-redirect=true" />
+        			
+			<p:menuitem value="Home"
+					action="/listagemLayout?faces-redirect=true" />
+					
+			<p:menuitem value="Avaliar como Professor"
+        			action="/cadastro-AvaliacaoProfessor-layout?faces-redirect=true" />
+        			
+        	<p:menuitem value="Avaliar como Empresa"
+        			action="/cadastro-AvaliacaoEmpresa-layout?faces-redirect=true" />
+					
+					
+		<p:menuitem>
+            <p:commandButton value="Sair" action="#{alunoBean.sair}" />
+        </p:menuitem>
+
+		</p:menubar>
+
+	</h:form>
+	<div id="conteudo">
+		<ui:insert name="corpo" />
+	</div>
+	<footer>
+		
+	</footer>
+</h:body>
+</html>

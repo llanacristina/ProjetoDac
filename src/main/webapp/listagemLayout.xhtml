@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Sistema Estagio</ui:define>
+	<ui:define name="corpo">
+		<h2>Alunos</h2>
+		<h:form>
+			<p:dataTable value="#{consultaAlunosBean.alunos}" var="aluno"
+				border="1" cellspacing="0" cellpadding="2">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{aluno.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Orientador" />
+					</f:facet>
+					<h:outputText value="#{aluno.orientador.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Empresa" />
+					</f:facet>
+					<h:outputText value="#{aluno.empresa.name}" />
+				</p:column>
+				
+				<p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações" />
+                    </f:facet>
+                    <p:commandButton value="Remover" action="#{consultaAlunosBean.remover(aluno)}"/>
+                    <p:commandButton value="Editar" action="cadastro-Aluno-layout?faces-redirect=true"  actionListener="#{consultaAlunosBean.iniciarEdicao(aluno)}"
+                     oncomplete="PF('editDialog').show()" />
+                </p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

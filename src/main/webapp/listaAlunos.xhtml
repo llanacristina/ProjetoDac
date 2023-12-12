@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition template="/WEB-INF/template/Layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+	<ui:define name="titulo">Lista de Alunos</ui:define>
+	<ui:define name="corpo">
+		<h2>Alunos</h2>
+		<h:form>
+			<p:dataTable value="#{consultaAlunosBean.alunos}" var="aluno"
+				border="1" cellspacing="0" cellpadding="2">
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Matrícula" />
+					</f:facet>
+					<h:outputText value="#{aluno.matricula}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Nome" />
+					</f:facet>
+					<h:outputText value="#{aluno.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Username" />
+					</f:facet>
+					<h:outputText value="#{aluno.username}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Empresa" />
+					</f:facet>
+					<h:outputText value="#{aluno.empresa.name}" />
+				</p:column>
+				<p:column>
+					<f:facet name="header">
+						<h:outputText value="Orientador" />
+					</f:facet>
+					<h:outputText value="#{aluno.orientador.name}" />
+				</p:column>
+				
+				  <p:column>
+                    <f:facet name="header">
+                        <h:outputText value="Ações" />
+                    </f:facet>
+                   <p:commandButton value="Remover" action="#{consultaAlunosBean.remover(aluno)}" />
+                    <p:commandButton value="Editar"  actionListener="#{consultaAlunosBean.iniciarEdicao(aluno)}" update=":editForm"
+                     oncomplete="PF('editDialog').show()" />
+                </p:column>
+			</p:dataTable>
+		</h:form>
+		
+		<!-- Modal de Edição -->
+		<p:dialog header="Editar Aluno" widgetVar="editDialog" resizable="false" modal="true">
+		    <h:form id="editForm">
+		        <h:panelGrid columns="2" cellpadding="5">
+		            <h:outputText value="Matrícula:" />
+		            <p:inputText value="#{consultaAlunosBean.alunoSelecionado.matricula}" />
+
+		            <h:outputText value="Nome:" />
+		            <p:inputText value="#{consultaAlunosBean.alunoSelecionado.name}" />
+
+		            <h:outputText value="Username:" />
+		            <p:inputText value="#{consultaAlunosBean.alunoSelecionado.username}" />
+
+		            <!--  <h:outputText value="Empresa:" />
+		            <p:inputText value="#{consultaAlunosBean.alunoSelecionado.empresa}" />
+
+		            <h:outputText value="Orientador:" />
+		            <p:inputText value="#{consultaAlunosBean.alunoSelecionado.orientador}" />-->
+		        </h:panelGrid>
+
+		        <p:commandButton value="Salvar" action="#{consultaAlunosBean.salvarEdicao()}" oncomplete="PF('editDialog').hide()" />
+		    </h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>
